@@ -1,0 +1,31 @@
+# P1 검증 — week4 실제 기타 녹음(DLBA, 2번째 샘플). 재현 대상: ENGINEERING_LOG.md
+# "DLBA(2번째 샘플) onset 검증 + P1 재현 시도" — rho(maxsim,오차)=+0.20~+0.36 (band_width
+# 전 구간에서 부호 안 뒤집힘). 원본 스크립트: scripts/exploratory/dlba_p1_test.py
+#
+# ⚠️ GT 가정(true_score_time == perf_time, t=0부터 시작)은 bansanka보다 검증이 약함
+# (onset-detection 평균오차 147ms, 직접 청취 검증은 안 함 — data/manifests/week4.csv 참조).
+experiment: p1_week4_dlba
+kind: p1_week4
+seed: 42
+ambiguity_metric: maxsim
+
+data:
+  song_package: "${week4_root}/build/mode1/dont_look_back_in_anger/song_package.json"
+  performance_wav: "${week4_root}/output/audio/guitar_tests/dont_look_back_in_anger_last_guitar_take.wav"
+  recording_length_sec: 90.03
+  score_max_sec: 90.0
+
+feature:
+  frame_hop_sec: 0.1
+  ambiguity_window_sec: 2.0
+  ambiguity_exclude_sec: 2.0
+  transpose_invariant: true
+
+tracker:
+  band_width_sec: 12.0   # 9~27초(10~30%) 구간에서 오차 1.2~3.6s로 건강 — 12초는 그 중간값
+  max_run_count: 3
+
+v7:
+  temperature: 0.001
+  merge_sec: 2.0
+  peak_rel_threshold: 0.01

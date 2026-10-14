@@ -1,0 +1,46 @@
+{
+  "status": "FAIL",
+  "scope": "prospective new-performer validation on the same four Vienna works",
+  "events": 9,
+  "performances": 7,
+  "works": 2,
+  "methods": [
+    "outerhmm"
+  ],
+  "mean_evidence_holds": 5,
+  "hold_precision": 0.6,
+  "oracle_holds": 4,
+  "work_equal_improvement": -0.23491990268597363,
+  "bootstrap95": [
+    -0.46983980537194725,
+    0.0
+  ],
+  "exact_sign_flip_p_one_sided": 1.0,
+  "per_work": [
+    {
+      "work": "Chopin/Op38",
+      "events": 1,
+      "performances": 1,
+      "global_regret": 2.5,
+      "frozen_delayed_regret": 2.5,
+      "mean_evidence_regret": 2.5
+    },
+    {
+      "work": "Schubert/D783No15",
+      "events": 8,
+      "performances": 6,
+      "global_regret": 0.15325385706343386,
+      "frozen_delayed_regret": 0.15325385706343386,
+      "mean_evidence_regret": 0.6230936624353811
+    }
+  ],
+  "gates": {
+    "implementation": true,
+    "support": false,
+    "work_equal_improvement": false,
+    "bootstrap_lower_positive": false,
+    "no_material_work_worsening": false,
+    "hold_precision": false,
+    "pass": false
+  }
+}

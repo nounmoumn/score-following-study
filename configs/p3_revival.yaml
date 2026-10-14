@@ -1,0 +1,24 @@
+# Frozen before first outcome inspection. Exploratory reuse, not preregistration.
+experiment: p3_revival
+seed: 20260917
+source: results/p2_asap_maxsim_20260908_135300
+asap_root: asap_dataset
+landmark:
+  stride_sec: 10.0
+  history_sec: 5.0
+  horizons_sec: [5.0, 2.0, 10.0]
+  primary_horizon_sec: 5.0
+  ridge_alpha: 1.0
+  n_bootstrap: 10000
+  n_shifts: 199
+intervention:
+  seeds: 32
+  hop_sec: 0.1
+  frames: 450
+  band_frames: 30
+  onset_frame: 150
+  restore_frame: 250
+  speed_changes: [-0.2, 0.0, 0.2]
+decision:
+  natural: "Primary 5s composition-balanced MAE improvement >0, bootstrap lower bound >0, shift p<=0.05. Predictive evidence only."
+  intervention: "Paired erasure increases post-onset error under tempo change, seed-bootstrap lower bound >0, pre-onset difference exactly zero. Synthetic mechanism only."

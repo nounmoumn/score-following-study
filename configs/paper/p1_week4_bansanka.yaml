@@ -1,0 +1,31 @@
+# P1 검증 — week4 실제 기타 녹음(만찬가). 재현 대상: ENGINEERING_LOG.md
+# "P1 테스트 2차 시도 — 부호 반전 성공" — rho(maxsim,오차)=+0.34, band_width=4~6초에서.
+# 원본 스크립트: scripts/exploratory/week4_p1_test_v2.py
+#
+# ⚠️ band_width_sec는 이 곡 하나로 그리드서치해서 찾은 값이다 — 원칙적 결정법이
+# 아직 없음(ENGINEERING_LOG.md "다음 확인 필요" 참조). DLBA는 다른 값(9~27초)이 맞았다.
+experiment: p1_week4_bansanka
+kind: p1_week4
+seed: 42
+ambiguity_metric: maxsim   # v7은 이 조건에서 반대 부호(FEEDBACK.md 전략 결정, rho_v7도 결과에 같이 남음)
+
+data:
+  song_package: "${week4_root}/build/mode1/bansanka_original_key/song_package.json"
+  performance_wav: "${week4_root}/output/audio/guitar_tests/bansanka_previous_guitar_take_recovered.wav"
+  recording_length_sec: 61.58
+  score_max_sec: 90.0
+
+feature:
+  frame_hop_sec: 0.1
+  ambiguity_window_sec: 2.0
+  ambiguity_exclude_sec: 2.0
+  transpose_invariant: true
+
+tracker:
+  band_width_sec: 5.0   # 4~6초 구간에서 안정적으로 정답부호(ENGINEERING_LOG.md 민감도 표)
+  max_run_count: 3
+
+v7:
+  temperature: 0.001
+  merge_sec: 2.0
+  peak_rel_threshold: 0.01

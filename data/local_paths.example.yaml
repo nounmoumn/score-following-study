@@ -1,0 +1,7 @@
+# 개인 환경 전용 경로 치환값. 이 파일을 data/local_paths.yaml로 복사해서 실제
+# 값으로 채울 것 — local_paths.yaml은 .gitignore되어 있어 커밋되지 않는다.
+#
+# configs/*.yaml에 ${week4_root} 같은 형태로 쓰인 부분이 여기 값으로 치환된다.
+# 목적: 코드/설정 어디에도 "C:\Users\User\..." 같은 개인 경로가 박히지 않게 하는 것.
+
+week4_root: "/path/to/week4"

@@ -1,0 +1,32 @@
+experiment: p3_extension
+seed: 20260918
+old_manifest: results/p3_revival_20260917_230027/manifest.csv
+asap_root: asap_dataset
+holdout_compositions: 40
+duration_sec: 90.0
+hop_sec: 0.1
+band_sec: 20.0
+evidence_window_sec: 2.0
+competitor_exclude_sec: 2.0
+local_candidate_radius_sec: 20.0
+landmark_start_sec: 20.0
+landmark_stop_sec: 75.0
+landmark_stride_sec: 5.0
+horizons_sec: [5.0, 2.0, 10.0]
+primary_horizon_sec: 5.0
+intervention:
+  onset_sec: 30.0
+  end_sec: 40.0
+  distractor_offset_score_sec: 3.0
+  protected_halfwidth_score_sec: 0.3
+  cue_strength: 0.25
+  prevention_interval_sec: [30.0, 32.0]
+  recovery_interval_sec: [38.0, 40.0]
+  cue_outcome_interval_sec: [40.0, 50.0]
+bayes:
+  transition: [0.2, 0.65, 0.1, 0.05]
+  emission_beta: 8.0
+  restart_probability: 0.000001
+ridge_alpha: 1.0
+n_bootstrap: 10000
+n_sign_flips: 19999

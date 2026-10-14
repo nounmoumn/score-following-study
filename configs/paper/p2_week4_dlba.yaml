@@ -1,0 +1,26 @@
+# P2 검증 — week4 실제 기타 녹음(DLBA, 2번째 샘플), 외적 타당성 확인.
+# 나머지 조건은 p1_week4_dlba.yaml과 통일.
+#
+# ⚠️ 녹음(90.03초)이 자른 스코어(90.0초)보다 살짝 길다 — 진짜 접두어 관계는 아니지만
+# (bansanka와 달리 거의 스코어 전체를 덮음), open_end=True를 그대로 써도 안전하다
+# (실제로 끝이 스코어 끝 근처에서 나오면 open_end=False와 결과가 거의 같아짐).
+experiment: p2_week4_dlba
+kind: p2_week4_gap
+seed: 42
+ambiguity_metric: maxsim
+
+data:
+  song_package: "${week4_root}/build/mode1/dont_look_back_in_anger/song_package.json"
+  performance_wav: "${week4_root}/output/audio/guitar_tests/dont_look_back_in_anger_last_guitar_take.wav"
+  recording_length_sec: 90.03
+  score_max_sec: 90.0
+
+feature:
+  frame_hop_sec: 0.1
+  ambiguity_window_sec: 2.0
+  ambiguity_exclude_sec: 2.0
+  transpose_invariant: true
+
+tracker:
+  band_width_sec: 12.0   # p1_week4_dlba.yaml과 동일
+  max_run_count: 3

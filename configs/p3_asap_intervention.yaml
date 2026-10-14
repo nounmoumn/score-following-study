@@ -1,0 +1,13 @@
+# Follow-up fixed after synthetic results, before any real ablation outcomes.
+experiment: p3_asap_intervention
+seed: 20260917
+manifest: results/p3_revival_20260917_230027/manifest.csv
+asap_root: asap_dataset
+hop_sec: 0.1
+duration_sec: 60.0
+onset_sec: 30.0
+restore_sec: 40.0
+recovery_end_sec: 50.0
+band_sec: 20.0
+n_bootstrap: 10000
+decision: "Mean composition-balanced paired error during 30-40s increases, bootstrap lower bound >0, and pre-onset difference is zero. This identifies the imposed evidence-erasure effect, not natural ambiguity mediation."

@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "eligible_events": 61,
+  "works": 7,
+  "methods": [
+    "arzt",
+    "outerhmm"
+  ],
+  "model_sha256": "233e85f04b9a50c2805b4c56df5f0f0d7eb95713318b887f1688dae8aea422ff",
+  "work_equal": {
+    "global_regret": 0.7002971969336257,
+    "immediate_regret": 0.7002971969336257,
+    "delayed_regret": 0.3343583691418718,
+    "global_minus_delayed": 0.36593882779175396,
+    "global_minus_delayed_ci": [
+      0.03311463414224435,
+      0.8235347486507582
+    ],
+    "immediate_minus_delayed": 0.36593882779175396,
+    "immediate_minus_delayed_ci": [
+      0.03311463414224435,
+      0.8235347486507582
+    ],
+    "global_accuracy": 0.7101113172541744,
+    "immediate_accuracy": 0.7101113172541744,
+    "delayed_accuracy": 0.8339517625231911
+  },
+  "floor_aware": {
+    "actionable_works": 5,
+    "improved_actionable_works": 4,
+    "required_improved_actionable_works": 3,
+    "floor_works": 2,
+    "floor_noninferior_works": 2,
+    "materially_worsened_works": 0
+  },
+  "per_work": [
+    {
+      "work": "Beethoven/Piano_Sonatas/30",
+      "events": 1,
+      "global_regret": 1.875,
+      "immediate_regret": 1.875,
+      "delayed_regret": 1.875,
+      "global_accuracy": 0.0,
+      "immediate_accuracy": 0.0,
+      "delayed_accuracy": 0.0
+    },
+    {
+      "work": "Beethoven/Piano_Sonatas/31",
+      "events": 14,
+      "global_regret": 0.4229063183927145,
+      "immediate_regret": 0.4229063183927145,
+      "delayed_regret": 0.191103879397004,
+      "global_accuracy": 0.8571428571428571,
+      "immediate_accuracy": 0.8571428571428571,
+      "delayed_accuracy": 0.9285714285714286
+    },
+    {
+      "work": "Beethoven/Piano_Sonatas/5",
+      "events": 1,
+      "global_regret": 0.0,
+      "immediate_regret": 0.0,
+      "delayed_regret": 0.0,
+      "global_accuracy": 1.0,
+      "immediate_accuracy": 1.0,
+      "delayed_accuracy": 1.0
+    },
+    {
+      "work": "Chopin/Etudes_op_10/7",
+      "events": 4,
+      "global_regret": 1.6119817981346856,
+      "immediate_regret": 1.6119817981346856,
+      "delayed_regret": 0.0,
+      "global_accuracy": 0.5,
+      "immediate_accuracy": 0.5,
+      "delayed_accuracy": 1.0
+    },
+    {
+      "work": "Chopin/Etudes_op_25/10",
+      "events": 4,
+      "global_regret": 0.6969954071555406,
+      "immediate_regret": 0.6969954071555406,
+      "delayed_regret": 0.0,
+      "global_accuracy": 0.75,
+      "immediate_accuracy": 0.75,
+      "delayed_accuracy": 1.0
+    },
+    {
+      "work": "Chopin/Polonaises/53",
+      "events": 22,
+      "global_regret": 0.2951968548524391,
+      "immediate_regret": 0.2951968548524391,
+      "delayed_regret": 0.2744047045960982,
+      "global_accuracy": 0.8636363636363636,
+      "immediate_accuracy": 0.8636363636363636,
+      "delayed_accuracy": 0.9090909090909091
+    },
+    {
+      "work": "Chopin/Sonata_3",
+      "events": 15,
+      "global_regret": 0.0,
+      "immediate_regret": 0.0,
+      "delayed_regret": 0.0,
+      "global_accuracy": 1.0,
+      "immediate_accuracy": 1.0,
+      "delayed_accuracy": 1.0
+    }
+  ],
+  "gates": {
+    "support": true,
+    "global_improvement_ci": true,
+    "immediate_improvement_ci": true,
+    "actionable_works": true,
+    "floor_noninferiority": true,
+    "no_materially_worsened_work": true,
+    "pass": true
+  }
+}

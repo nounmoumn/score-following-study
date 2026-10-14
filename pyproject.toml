@@ -1,0 +1,32 @@
+[project]
+name = "score-following-p1"
+version = "0.1.0"
+description = "ISMIR 2027 논문 재현 패키지 — 모호성이 실시간 score-following 오차를 예측하는가"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+    "librosa",
+    "soundfile",
+    "pretty_midi",
+    "PyGuitarPro",
+    "mido",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+research = [
+    "numba",
+    "threadpoolctl",
+    "matplotlib",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"

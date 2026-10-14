@@ -1,0 +1,38 @@
+# P1 검증 — ASAP, **구조(형식) 모호성** 버전. 2026-09-17 신규.
+#
+# RESEARCH_DEFINITION.md §2는 모호성을 두 종류로 구분한다:
+#   국소(화성): 4마디 루프 안에서 이 C가 몇 번째 C인지 (경쟁 후보가 몇 초 거리)
+#   구조(형식): 1절 vs 2절                          (경쟁 후보가 수십 초 거리)
+# 지금까지의 모든 P1/P2/P3는 **국소** 모호성만 썼다(윈도우 2초, 제외 2초).
+# 이 config는 같은 계산식(maxsim, 재설계 안 함)에 **긴 윈도우 + 큰 제외 반경**을 줘서
+# 구조 모호성을 잰다:
+#   - ambiguity_window_sec 8.0: 구조적 반복은 한 화음이 아니라 긴 구간이 닮는 것
+#   - ambiguity_exclude_sec 20.0: 가까운 루프 반복을 후보에서 빼고 먼 반복만 남김
+#
+# ⚠️ 이건 P3 재시도 전의 **타당성 검사**다. 구조 모호성이 애초에 오차를 예측하지
+# 못하면(P1-구조 실패) P3-구조는 물어볼 필요가 없다.
+# ⚠️ 제외 반경이 크면 n_windows > 2*exclude+2 조건 때문에 **짧은 곡이 탈락**한다 —
+# 구조 분석은 원래 긴 곡에서만 가능하다는 내재적 한계(결과 해석 시 반드시 언급).
+experiment: p1_asap_structural
+kind: p1_asap
+seed: 42
+ambiguity_metric: maxsim
+
+data:
+  asap_root: asap_dataset
+  n_pieces: 40
+  diverse_sampling: true
+
+feature:
+  frame_hop_sec: 0.1
+  ambiguity_window_sec: 8.0     # 국소판은 2.0
+  ambiguity_exclude_sec: 20.0   # 국소판은 2.0
+  transpose_invariant: false
+
+tracker:
+  band_width_sec: 20.0
+  max_run_count: 3
+
+evaluation:
+  health_threshold_sec: 1.0
+  n_shuffles: 200

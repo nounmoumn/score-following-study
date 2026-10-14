@@ -1,0 +1,37 @@
+# P3 검증 — ASAP, "모호성 진입 → 드리프트 시작"의 시간 순서.
+# 설계: FEEDBACK.md "P3 설계" 절(전략, 2026-09-08) + src/score_following/drift.py에
+# 적은 두 가지 수정(대칭 검정, 순환이동 귀무가설 — 원안의 "앞만 보는 lag"는 순환논증).
+# 나머지 조건(band_width, feature 등)은 p1_asap_maxsim.yaml과 통일.
+experiment: p3_asap_order
+kind: p3_asap_order
+seed: 42
+ambiguity_metric: maxsim
+
+data:
+  asap_root: asap_dataset
+  n_pieces: 40
+  diverse_sampling: true
+
+feature:
+  frame_hop_sec: 0.1
+  ambiguity_window_sec: 2.0
+  ambiguity_exclude_sec: 2.0
+  transpose_invariant: false
+
+tracker:
+  band_width_sec: 20.0
+  max_run_count: 3
+
+p3:
+  max_lag_sec: 10.0        # 교차상관을 볼 lag 범위(±). 드리프트는 수 초 단위로 자라므로 10초면 충분
+  smooth_sec: 2.0          # 오차·모호성 궤적 이동평균 폭. 모호성 윈도우(2초)와 맞춤
+  event_window_sec: 5.0    # 사건 기반 대칭창 검정의 창 폭(직전 5초 vs 직후 5초)
+  event_min_gap_sec: 2.0   # 같은 사건의 떨림을 하나로 묶는 최소 간격
+  ambiguity_percentile: 75 # "모호 진입" = 그 곡 모호성 분포의 상위 25% 진입
+  drift_percentile: 75     # "드리프트 시작" = 그 곡 양의 드리프트속도 분포의 상위 25% 진입
+
+evaluation:
+  # ⚠️ P1/P2와 달리 건강도 필터를 끈다 — P3가 보려는 사건이 드리프트 자체라서,
+  # 파국적으로 실패한 곡이 오히려 가장 선명한 사건을 준다(drift.py/run.py 주석 참조).
+  health_threshold_sec: null
+  n_shuffles: 200

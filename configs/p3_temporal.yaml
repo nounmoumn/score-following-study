@@ -1,0 +1,37 @@
+experiment: p3_temporal
+seed: 20260919
+previous_manifest: results/p3_extension_20260917_234336/manifest.csv
+asap_root: asap_dataset
+new_scores: 40
+hop_sec: 0.1
+duration_sec: 90.0
+band_sec: 20.0
+onset_sec: 30.0
+erasure_end_sec: 40.0
+primary_horizon_sec: 5.0
+horizons_sec: [1.0, 2.0, 5.0, 10.0]
+healthy_error_sec: 0.5
+healthy_history_sec: 2.0
+evidence_window_sec: 2.0
+candidate_radius_score_sec: 20.0
+candidate_exclude_score_sec: 2.0
+event:
+  grid_start_sec: 20.0
+  grid_stop_sec: 75.0
+  weak_threshold: -0.05
+  strong_threshold: -0.15
+  minimum_gap_sec: 10.0
+  control_separation_sec: 10.0
+  error_caliper_sec: 0.10
+  trend_caliper_sec: 0.10
+  tempo_caliper: 0.20
+calibration:
+  old_performances: 8
+  shift_frames: [-5, 0, 5]
+bayes:
+  transition: [0.2, 0.65, 0.1, 0.05]
+  emission_beta: 8.0
+  restart_probability: 0.000001
+n_bootstrap: 10000
+n_sign_flips: 19999
+minimum_scores: 10

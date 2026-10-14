@@ -1,0 +1,26 @@
+# P1 검증 — ASAP, maxsim(공식/보고 지표). 재현 대상: ENGINEERING_LOG.md
+# "ASAP(0단계) P1 파일럿 결과" — rho=+0.196, z=71.98 (39개 연주).
+# 원본 스크립트: scripts/exploratory/p1_verification.py
+experiment: p1_asap_maxsim
+kind: p1_asap
+seed: 42
+ambiguity_metric: maxsim
+
+data:
+  asap_root: asap_dataset
+  n_pieces: 40          # diverse_sampling으로 작곡가 라운드로빈, 건강도 필터로 보통 1개 탈락 -> ~39
+  diverse_sampling: true
+
+feature:
+  frame_hop_sec: 0.1
+  ambiguity_window_sec: 2.0
+  ambiguity_exclude_sec: 2.0
+  transpose_invariant: false   # 원조 헤드라인 수치는 조옮김-불변 아님 (p1_verification.py 그대로)
+
+tracker:
+  band_width_sec: 20.0   # = 200프레임. 6초는 낭만파 비르투오소곡에서 75% 파국적 실패(too narrow)
+  max_run_count: 3
+
+evaluation:
+  health_threshold_sec: 1.0   # 중앙값 오차가 이 값 넘으면 "길 잃음" -> 상관 분석서 제외
+  n_shuffles: 200

@@ -1,0 +1,93 @@
+# Planning contract; execution scripts listed in the plan are NOT implemented yet.
+protocol_id: score_priority_v1
+status: planned_not_executed
+task: score_only_test_prioritization
+deadline_scope: lbd_draft_2026_09_23
+seed: 20260922
+manifest: output/score_priority_plan/cohort_manifest.csv
+result_root: results/score_priority_v1
+data:
+  root: asap_dataset
+  source_manifest: results/p3_extension_20260917_234336/manifest.csv
+  primary_cohort: primary_opened
+  replication_cohort: replication_opened_nonoverlap
+  fresh_holdout: false
+  health_filter: false
+  minimum_full_score_blocks: 20
+  min_gt_anchors_per_block: 2
+  allow_preserved_data: false
+score_profile:
+  representation: duration_weighted_pitch_class_l2
+  grid_quarter_beats: 0.25
+  block_quarter_beats: 4
+  context_quarter_beats: 4
+  candidate_stride_quarter_beats: 0.25
+  exclusion_start_distance_quarter_beats: 4
+  transpose_invariant: false
+  silence_similarity: 0
+  final_partial_block: exclude
+  all_silent_block_priority: lowest
+  tie_break: sha256_score_hash_block_index_seed
+  modify_historical_ambiguity_module: false
+selection:
+  primary_fraction: 0.20
+  secondary_fractions: [0.10, 0.30, 0.50]
+  k_rule: ceil_fraction_times_eligible_blocks
+  main: ordered_chroma_maxsim
+  baselines: [uniform_random_expectation, unordered_chroma_maxsim, note_density_high, note_density_low]
+  real_output: score_block_ids_and_quarter_beat_ranges
+tracking:
+  input: direct_performance_midi
+  performance_hop_sec: 0.1
+  score_hop_native_midi_sec: 0.1
+  whole_performance_tempo_normalization: false
+  initial_position: known_score_beginning
+  primary:
+    family: OnlineDTW
+    band_width_frames: 200
+    max_run_count: 3
+    stop_at_performance_end: true
+    artificial_tail: forbidden
+  secondary:
+    family: existing_full_posterior_bayes
+    transition: [0.2, 0.65, 0.1, 0.05]
+    beta: 8.0
+    restart: 0.000001
+  inputs_to_ranker: score_only
+evaluation:
+  main_clock: original_annotation_anchor
+  prediction_time: last_completed_performance_frame_at_or_before_anchor
+  interpolation_of_estimated_path_from_future_frames: forbidden
+  error_units: midi_quarter_beats
+  primary_error_threshold_strictly_greater: 1.0
+  secondary_error_thresholds: [0.5, 2.0]
+  primary_block_loss: fraction_of_original_gt_anchors_with_error
+  aggregation: equal_work_then_equal_performance
+  bootstrap_unit: work_family
+  bootstrap_replicates: 10000
+  intervals: descriptive_95_percent
+  primary_capture_gain_random_min: 0.10
+  primary_capture_gain_each_nonrandom_baseline_min: 0.05
+  primary_lower_ci_each_gain_must_exceed: 0.0
+  min_error_bearing_work_families: 10
+  min_work_families_for_decision: 20
+  missing_predictions: error_with_missing_flag
+  no_error_works: retain_and_report
+  statistical_claim: retrospective_exploratory_not_confirmatory
+resources:
+  python: .venv/Scripts/python.exe
+  workers: 2
+  blas_threads_per_worker: 1
+  soft_total_rss_gib: 10
+  gpu: false
+  colab: false
+  max_research_wall_hours_from_execution_start: 6
+  max_implementation_and_audit_hours: 2
+  primary_run_budget_hours: 2
+  replication_and_report_budget_hours: 2
+  failure_parameter_search: forbidden
+optional:
+  tracker_selection_policy: false
+  new_corpus_acquisition: false
+  p3_signal_search: false
+  primary_hypothesis_replacement: false

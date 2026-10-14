@@ -1,0 +1,52 @@
+# P3 재시도 — ASAP, **구조(형식) 모호성** 버전. 2026-09-17 신규.
+#
+# 왜 재시도하나: P3(국소 모호성 기준)은 기각됐다(ENGINEERING_LOG.md "P3 N=40 본 실행" 절).
+# 그런데 실패가 설명 가능해 보인다 — 국소(화성) 모호성은 "루프 안에서 몇 번째 C인지"를
+# 헷갈리는 것이라 오차가 **몇 초** 규모이고 밴드(20초) 안에서 쉽게 회복된다. 반면 실측된
+# 최대 드리프트는 **중앙값 15.53초**로, 그 규모는 1절↔2절을 착각하는 **구조** 모호성이
+# 원인일 가능성이 크다. 즉 "모호성 → 드리프트"의 시간 순서는 국소가 아니라 구조 수준에서
+# 봐야 할 수 있다.
+#
+# ⚠️ 사후 가설 맞추기(p-hacking) 방지 장치 — 실행 전에 미리 적어둔다:
+#   예측: 구조 모호성 진입이 큰 드리프트 사건에 **선행**한다면
+#         (1) 주 검정 백분위 중앙값 > 50, (2) 교차상관 피크 lag > 0,
+#         (3) 대칭창에서 직전 > 직후.
+#   국소판 실측치(반증 기준선): (1) 37.8, (2) −1.45초, (3) 212 vs 277.
+#   ⇒ 구조판이 이 세 개를 전부 50 위 / 양수 / 직전우세로 뒤집지 못하면 **기각으로 처리**하고,
+#      "국소는 실패, 구조는 성공"이라는 서술을 쓰지 않는다.
+#   ⇒ 그리고 성공하더라도 창 길이·제외 반경 민감도 스윕을 반드시 같이 보고한다
+#      (lock-in 가설이 임계값 하나에 의존해 부호가 뒤집혔던 전례 때문에).
+experiment: p3_asap_structural
+kind: p3_asap_order
+seed: 42
+ambiguity_metric: maxsim
+
+data:
+  asap_root: asap_dataset
+  n_pieces: 40
+  diverse_sampling: true
+
+feature:
+  frame_hop_sec: 0.1
+  ambiguity_window_sec: 8.0     # 국소판은 2.0 — 구조적 반복은 긴 구간이 닮는 것
+  ambiguity_exclude_sec: 20.0   # 국소판은 2.0 — 가까운 루프 반복을 후보에서 제외
+  transpose_invariant: false
+
+tracker:
+  band_width_sec: 20.0
+  max_run_count: 3
+
+p3:
+  # 구조 모호성은 시간 규모가 크므로 lag 범위·평활·창도 같이 키운다.
+  # ⚠️ 평활 폭이 lag 분해능의 하한이다(국소판에서 2초 평활 때문에 −1.45초를 "0과 구별
+  # 불가"로 읽어야 했던 문제) — 구조판은 4초 평활이므로 ±4초 미만 lag는 해석 금지.
+  max_lag_sec: 30.0
+  smooth_sec: 4.0
+  event_window_sec: 15.0
+  event_min_gap_sec: 5.0
+  ambiguity_percentile: 75
+  drift_percentile: 75
+
+evaluation:
+  health_threshold_sec: null    # P3는 드리프트 사건 자체를 보므로 필터 끔(국소판과 동일)
+  n_shuffles: 20                # 국소판에서 20회와 200회가 소수점까지 일치함을 확인했음

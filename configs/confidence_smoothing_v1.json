@@ -1,0 +1,32 @@
+{
+  "experiment": "filtering_vs_fixed_lag_smoothing_v1",
+  "audit_run": "results/confidence_audit_v2",
+  "source_manifest": "output/score_priority_plan/cohort_manifest.csv",
+  "role": "primary_opened",
+  "expected_performances": 40,
+  "asap_root": "asap_dataset",
+  "lags": [
+    0,
+    5,
+    10,
+    20
+  ],
+  "performance_hop_sec": 0.1,
+  "score_hop_sec": 0.1,
+  "replay_prefix_sec": 90.0,
+  "position_tolerance_score_sec": 0.5,
+  "transition": [
+    0.2,
+    0.65,
+    0.1,
+    0.05
+  ],
+  "beta": 8.0,
+  "restart": 1e-06,
+  "reliability_bins": 10,
+  "gate_delay_free_accuracy": 0.03,
+  "gate_auc_gain": 0.02,
+  "blas_threads": 2,
+  "out": "results/confidence_smoothing_v1",
+  "min_shared_anchors": 20
+}

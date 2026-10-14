@@ -1,0 +1,120 @@
+{
+  "eligible_events": 82,
+  "works": 7,
+  "methods": [
+    "arzt",
+    "outerhmm"
+  ],
+  "oracle_actions": {
+    "accept": 74,
+    "hold": 8
+  },
+  "work_equal": {
+    "global_regret": 0.24837479852102703,
+    "immediate_regret": 0.24837479852102703,
+    "delayed_regret": 0.11643418791405424,
+    "immediate_minus_delayed": 0.13194061060697285,
+    "immediate_minus_delayed_ci": [
+      0.012979995597621448,
+      0.2641674975874683
+    ],
+    "global_minus_delayed": 0.13194061060697285,
+    "global_minus_delayed_ci": [
+      0.012979995597621448,
+      0.2641674975874683
+    ],
+    "delayed_better_than_immediate_works": 3,
+    "delayed_better_than_global_works": 3,
+    "required_positive_works": 5,
+    "global_accuracy": 0.9136054421768708,
+    "immediate_accuracy": 0.9136054421768708,
+    "delayed_accuracy": 0.953968253968254
+  },
+  "folds": [
+    {
+      "work": "Beethoven/Piano_Sonatas/27",
+      "events": 7,
+      "global_action": "accept",
+      "global_regret": 0.0,
+      "immediate_regret": 0.0,
+      "delayed_regret": 0.0,
+      "global_accuracy": 1.0,
+      "immediate_accuracy": 1.0,
+      "delayed_accuracy": 1.0
+    },
+    {
+      "work": "Beethoven/Piano_Sonatas/28",
+      "events": 14,
+      "global_action": "accept",
+      "global_regret": 0.5781570922563439,
+      "immediate_regret": 0.5781570922563439,
+      "delayed_regret": 0.1607929724162846,
+      "global_accuracy": 0.7857142857142857,
+      "immediate_accuracy": 0.7857142857142857,
+      "delayed_accuracy": 0.9285714285714286
+    },
+    {
+      "work": "Beethoven/Piano_Sonatas/3",
+      "events": 9,
+      "global_action": "accept",
+      "global_regret": 0.9848545869130866,
+      "immediate_regret": 0.9848545869130866,
+      "delayed_regret": 0.5694944016876862,
+      "global_accuracy": 0.6666666666666666,
+      "immediate_accuracy": 0.6666666666666666,
+      "delayed_accuracy": 0.7777777777777778
+    },
+    {
+      "work": "Beethoven/Piano_Sonatas/8",
+      "events": 11,
+      "global_action": "accept",
+      "global_regret": 0.0,
+      "immediate_regret": 0.0,
+      "delayed_regret": 0.0,
+      "global_accuracy": 1.0,
+      "immediate_accuracy": 1.0,
+      "delayed_accuracy": 1.0
+    },
+    {
+      "work": "Chopin/Etudes_op_25/4",
+      "events": 1,
+      "global_action": "accept",
+      "global_regret": 0.0,
+      "immediate_regret": 0.0,
+      "delayed_regret": 0.0,
+      "global_accuracy": 1.0,
+      "immediate_accuracy": 1.0,
+      "delayed_accuracy": 1.0
+    },
+    {
+      "work": "Chopin/Scherzos/39",
+      "events": 5,
+      "global_action": "accept",
+      "global_regret": 0.0,
+      "immediate_regret": 0.0,
+      "delayed_regret": 0.0,
+      "global_accuracy": 1.0,
+      "immediate_accuracy": 1.0,
+      "delayed_accuracy": 1.0
+    },
+    {
+      "work": "Chopin/Sonata_2",
+      "events": 35,
+      "global_action": "accept",
+      "global_regret": 0.17561191047775904,
+      "immediate_regret": 0.17561191047775904,
+      "delayed_regret": 0.0847519412944089,
+      "global_accuracy": 0.9428571428571428,
+      "immediate_accuracy": 0.9428571428571428,
+      "delayed_accuracy": 0.9714285714285714
+    }
+  ],
+  "gates": {
+    "support": true,
+    "beats_immediate_ci": true,
+    "beats_global_ci": true,
+    "positive_works": false,
+    "pass": false
+  },
+  "lockbox_authorized": false
+}

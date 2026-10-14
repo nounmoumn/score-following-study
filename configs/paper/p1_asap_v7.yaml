@@ -1,0 +1,36 @@
+# P1 검증 — ASAP, v7(보조 지표, 클러스터링된 실질후보개수). 재현 대상: FEEDBACK.md
+# "v7 N=39 ASAP 재검증" — rho=+0.075, z=21.24. v7 계산에는 조옮김-불변 유사도 행렬을 쓴다
+# (ambiguity_v5.build_transpose_sim_matrix와 동일 기반).
+#
+# ⚠️ 알려진 미해결 사항 (STUDY_LOG.md/전략 미정리): 이 config의 transpose_invariant=true
+# maxsim 재계산치(전략 로그 기준 rho=+0.173)는 p1_asap_maxsim.yaml의 원조 헤드라인
+# 수치(+0.196, transpose_invariant=false)와 다르다 — 서로 다른 유사도 행렬 구성이라
+# 직접 비교 시 이 차이를 반드시 언급할 것 (FEEDBACK.md "최종 결정(전략)" 항목 참조).
+experiment: p1_asap_v7
+kind: p1_asap
+seed: 42
+ambiguity_metric: v7
+
+data:
+  asap_root: asap_dataset
+  n_pieces: 40
+  diverse_sampling: true
+
+feature:
+  frame_hop_sec: 0.1
+  ambiguity_window_sec: 2.0
+  ambiguity_exclude_sec: 2.0
+  transpose_invariant: true   # v7은 조옮김-불변 유사도 행렬 위에서 계산됨
+
+tracker:
+  band_width_sec: 20.0
+  max_run_count: 3
+
+v7:
+  temperature: 0.001   # 검증 없이 0.1 쓰면 이론최댓값(log2 n_windows)에 뭉개짐(2026-09-06 버그)
+  merge_sec: 2.0
+  peak_rel_threshold: 0.01
+
+evaluation:
+  health_threshold_sec: 1.0
+  n_shuffles: 200

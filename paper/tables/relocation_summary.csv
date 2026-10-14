@@ -1,0 +1,5 @@
+experiment,events,works,trackers_with_events,gate,regret_improvement,ci_low,ci_high
+MIDI development,82,7,2,FAIL,0.13194061060697285,0.012979995597621448,0.2641674975874683
+MIDI lockbox,61,7,2,PASS,0.36593882779175396,0.03311463414224435,0.8235347486507582
+Audio frozen pilot,5,2,1,FAIL,0.0,0.0,0.0
+Audio prospective rescue,9,2,1,FAIL,-0.23491990268597363,-0.46983980537194725,0.0

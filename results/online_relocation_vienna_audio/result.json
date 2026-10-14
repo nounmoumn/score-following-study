@@ -1,0 +1,45 @@
+{
+  "status": "FAIL",
+  "scope": "frozen Vienna 4x22 audio shadow transfer",
+  "events": 5,
+  "performances": 3,
+  "works": 2,
+  "methods": [
+    "outerhmm"
+  ],
+  "holds": 0,
+  "hold_precision": null,
+  "work_equal_improvement": 0.0,
+  "bootstrap95": [
+    0.0,
+    0.0
+  ],
+  "exact_sign_flip_p_one_sided": null,
+  "per_work": [
+    {
+      "work": "Chopin/Op38",
+      "events": 1,
+      "performances": 1,
+      "global_regret": 1.8933264145642212,
+      "immediate_regret": 1.8933264145642212,
+      "delayed_regret": 1.8933264145642212
+    },
+    {
+      "work": "Schubert/D783No15",
+      "events": 4,
+      "performances": 2,
+      "global_regret": 0.8283949619565929,
+      "immediate_regret": 0.8283949619565929,
+      "delayed_regret": 0.8283949619565929
+    }
+  ],
+  "gates": {
+    "implementation": true,
+    "support": false,
+    "work_equal_improvement": false,
+    "bootstrap_lower_positive": false,
+    "no_material_work_worsening": true,
+    "hold_precision": false,
+    "pass": false
+  }
+}

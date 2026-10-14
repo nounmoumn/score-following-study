@@ -1,0 +1,22 @@
+experiment: p3_state_conditioned
+seed: 20260920
+asap_root: asap_dataset
+training_manifest: results/p3_temporal_20260918_000058/manifest.csv
+excluded_manifests:
+  - results/p3_extension_20260917_234336/manifest.csv
+  - results/p3_temporal_20260918_000058/manifest.csv
+new_scores: 40
+duration_sec: 90.0
+hop_sec: 0.1
+landmarks_sec: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75]
+exposure_sec: 2.0
+horizons_sec: [5.0, 2.0, 10.0]
+region_halfwidth_sec: 0.5
+exclude_sec: 2.0
+ridge_alpha: 1.0
+bayes:
+  transition: [0.2, 0.65, 0.1, 0.05]
+  emission_beta: 8.0
+  restart_probability: 0.000001
+n_bootstrap: 10000
+n_sign_flips: 19999
